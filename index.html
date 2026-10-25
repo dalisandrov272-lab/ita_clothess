@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ITA CLOTHES</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="ITA CLOTHES: ropa directo de fábrica en Itá Ibaté, Corrientes. Camisetas de fútbol, remeras, jeans mom y bermudas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+<style>
+/* Concepto: portada oscura con anillo 3D de prendas (carrusel) y un panel de vidrio con las frases clave; debajo, cuatro secciones de catálogo y un cierre de contacto. */
+:root{
+  --ink:#020204;           /* fondo base */
+  --ink2:#0a111d;          /* paneles */
+  --line:rgba(255,255,255,.10);
+  --fg:#ffffff;
+  --mute:#a9aeb5;
+  --cyan:#3ec8e4;          /* brillo de marca */
+  --cyan-soft:#9ad9ec;
+  --amber:#ffb454;         /* solo para la sección de verano */
+  --font-d:"Poppins",system-ui,sans-serif;
+  --font-s:"Playfair Display",Georgia,serif;
+  --expo:cubic-bezier(.16,1,.3,1);
+  color-scheme:dark;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{font-family:var(--font-d);color:var(--fg);background:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:450;background:var(--ink)}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+section[id]{scroll-margin-top:84px}
+.wrap{width:100%;max-width:1220px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* ---------- botón con brillo en la base (recortado por su propio borde) ---------- */
+.btn{display:grid;place-items:center;color:#fff;position:relative;overflow:hidden;cursor:pointer;
+  background:linear-gradient(to top,#9ad9ec 1px,#89dff0 2px,#79e0f1 3px,#61daef 4px,#3ec8e4 5px,#14a8c6 6px,#0596b3 7px,#038aa8 8px,#047796 9px,#006180 10px,#025066 12px,#0a4f5e 13px,#04465a 14px,#073746 16px,#0a2a37 18px,#0d212e 20px,#0f1824 24px,#0a121e 30px,#0a111d 34px,#0a111d 100%);
+  box-shadow:inset 0 3px 3px -2px rgba(180,228,255,.10),inset 1px 0 0 rgba(255,255,255,.09),inset -1px 0 0 rgba(255,255,255,.09),var(--hair,0 1px 0 rgba(152,218,234,.38)),1px 0 0 rgba(152,218,234,.17),-1px 0 0 rgba(152,218,234,.17),0 0 8px rgba(60,190,235,.10),0 2px 5px -3px rgba(90,220,255,.45);
+  transition:transform .25s,box-shadow .25s,filter .25s;font-weight:500;letter-spacing:-.005em;line-height:1}
+.btn::before{content:"";position:absolute;left:22%;right:38%;top:.8px;height:1.9px;z-index:1;filter:blur(.55px);
+  background:linear-gradient(90deg,rgba(120,225,255,0) 0%,rgba(120,225,255,.58) 34%,rgba(160,240,255,.74) 50%,rgba(120,225,255,.58) 66%,rgba(120,225,255,0) 100%)}
+.btn::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:1;
+  background:linear-gradient(90deg,rgba(200,245,255,.70),rgba(200,245,255,0) 13px),linear-gradient(270deg,rgba(200,245,255,.70),rgba(200,245,255,0) 13px);
+  -webkit-mask:linear-gradient(to top,#000 0,#000 6px,rgba(0,0,0,.40) 12px,rgba(0,0,0,.15) 18px,rgba(0,0,0,.09) 24px,rgba(0,0,0,.02) 30px,rgba(0,0,0,.02) 100%);
+          mask:linear-gradient(to top,#000 0,#000 6px,rgba(0,0,0,.40) 12px,rgba(0,0,0,.15) 18px,rgba(0,0,0,.09) 24px,rgba(0,0,0,.02) 30px,rgba(0,0,0,.02) 100%)}
+.btn span{position:relative;z-index:2;display:block;line-height:1;text-shadow:0 1px 2px rgba(0,20,30,.5);white-space:nowrap}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.12);box-shadow:inset 0 1px 0 rgba(200,245,255,.6),inset 1px 0 0 rgba(170,225,255,.35),inset -1px 0 0 rgba(170,225,255,.35),0 6px 22px rgba(20,180,225,.55)}
+.btn:focus-visible,.links a:focus-visible,.burger:focus-visible,.pill:focus-visible,.wa:focus-visible{outline:2px solid rgba(120,225,255,.8);outline-offset:3px}
+.btn.sm{width:112px;height:38px;border-radius:12px;font-size:13px}
+.btn.md{height:50px;padding:0 26px;border-radius:14px;font-size:15px}
+
+/* ---------- barra superior ---------- */
+.nav{position:fixed;z-index:400;top:calc(env(safe-area-inset-top,0px) + 10px);left:50%;transform:translateX(-50%);
+  width:min(780px,calc(100% - 32px));height:60px;border-radius:30px;padding:0 10px 0 24px;display:flex;align-items:center;
+  background:rgba(8,10,16,.55);border:1px solid rgba(255,255,255,.105);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.03)}
+.brand{display:flex;align-items:flex-end;gap:5px;line-height:1;color:#fff}
+.brand .w1{font-weight:200;font-size:27px;letter-spacing:.02em}
+.brand .w2{font-weight:300;font-size:17px;padding-bottom:2px;border-bottom:1px solid #fff;letter-spacing:.01em;margin-bottom:1px}
+.navmenu{display:contents}
+.links{display:flex;align-items:center;gap:22px;margin-left:auto;margin-right:22px}
+.links a{font-size:12.5px;font-weight:400;color:rgba(255,255,255,.92);white-space:nowrap;transition:opacity .25s}
+.links a:hover{opacity:.65}
+.nav .btn{width:118px;height:40px;border-radius:14px;font-size:14px}
+.burger{display:none}
+
+/* ---------- portada ---------- */
+.hero{position:relative;height:100vh;height:100svh;overflow:hidden;background:var(--ink)}
+.bg{position:absolute;inset:0;background:linear-gradient(180deg,rgba(25,127,255,0) 38%,rgba(25,127,255,.042) 54%,rgba(25,127,255,.052) 68%,rgba(25,127,255,.030) 100%),#020204}
+.stars{position:absolute;left:0;top:0;width:1px;height:1px;border-radius:50%;background:#fff}
+.canvas{position:absolute;left:50%;top:0;width:1172px;height:657px;transform:translateX(-50%) scale(var(--k,1));transform-origin:50% 0}
+.canvas>*{position:absolute}
+
+.badge{left:477px;top:95px;width:218px;height:39px;border-radius:12px;z-index:300;border:1px solid rgba(255,255,255,.115);
+  background:linear-gradient(to top,rgba(190,225,255,.175) 0px,rgba(190,225,255,.128) 2px,rgba(190,225,255,.075) 4px,rgba(190,225,255,.026) 6px,rgba(255,255,255,.012) 9px,rgba(255,255,255,.012) 100%);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
+.tile{display:grid;place-items:center;border-radius:8px;
+  background:linear-gradient(to top,#46afc8 0px,#35abc7 2px,#0b859d 4px,#026c84 6px,#004e66 8px,#053f58 10px,#012c3d 12px,#031a2a 14px,#061125 16px,#090f25 19px,#090c1c 23px,#060d16 29px);
+  box-shadow:inset 1px 0 0 rgba(150,220,250,.40),inset -1px 0 0 rgba(150,220,250,.52),0 0 6px rgba(60,190,230,.20),0 3px 8px -5px rgba(90,220,255,.6)}
+.tile svg{width:15px;height:15px;stroke:rgba(210,244,255,.95);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.badge .tile{position:absolute;left:4px;top:4px;width:29px;height:29px}
+.badge b{position:absolute;left:45px;top:0;height:39px;display:flex;align-items:center;font-size:12.5px;font-weight:400;color:rgba(255,255,255,.94);white-space:nowrap;padding-top:1.5px}
+
+.canvas>.h1{left:586px;transform:translateX(-50%);white-space:nowrap;line-height:1;font-weight:900;font-size:52px;letter-spacing:-.004em;word-spacing:.12em;text-transform:uppercase;color:#fff;text-shadow:0 0 34px rgba(130,180,255,.22);z-index:300}
+.canvas>.h1.l1{top:157px}
+.canvas>.h1.l2{top:212px}
+.canvas>.sub{left:586px;transform:translateX(-50%);white-space:nowrap;line-height:1;font-size:13.2px;color:var(--mute);z-index:300}
+.canvas>.sub b{font-weight:600;color:#fff}
+.canvas>.sub.s1{top:289px}
+.canvas>.sub.s2{top:306px}
+.canvas>.cta2{left:506px;top:349px;width:160px;height:54.5px;--hair:0 0 0 transparent;border-radius:13px;font-size:15px;z-index:300}
+.cta2::before{display:none}
+
+/* anillo 3D: 37 tarjetas sobre un cilindro de radio 891 */
+.canvas>.showcase{left:0;top:0;width:1172px;height:0}
+.ring{position:absolute;left:0;top:0;width:1172px;height:657px;z-index:5;perspective:891px;perspective-origin:586px 918px;transform-style:preserve-3d;pointer-events:none}
+.card{position:absolute;left:586px;top:616px;width:130px;height:300px;margin:-150px 0 0 -65px;border-radius:12px;overflow:hidden;background:#0d1117;box-shadow:0 24px 46px rgba(0,0,0,.6),0 3px 8px rgba(0,0,0,.5);backface-visibility:hidden;will-change:transform}
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card .edge{position:absolute;inset:0;border-radius:12px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15),inset 0 16px 30px rgba(255,255,255,.05)}
+.card.broken img{display:none}
+
+/* panel de vidrio con las frases clave (queda delante del anillo) */
+.canvas>.panel{left:165px;top:558px;width:842px;height:calc(99px + var(--fill,0px));border-radius:28px 28px 0 0;z-index:100;overflow:hidden;
+  background:linear-gradient(180deg,rgba(26,32,56,.66),rgba(12,16,30,.92));
+  -webkit-backdrop-filter:blur(10px) saturate(112%);backdrop-filter:blur(10px) saturate(112%);
+  border:1px solid rgba(255,255,255,.10);border-bottom:0;box-shadow:0 -14px 44px rgba(0,0,0,.55)}
+.facts{position:absolute;left:26px;right:26px;top:22px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;list-style:none}
+.fact{display:flex;gap:9px;align-items:flex-start;min-width:0}
+.fact .tile{flex:0 0 auto;width:27px;height:27px}
+.fact .tile svg{width:14px;height:14px}
+.fact b{display:block;font-size:calc(9.4px*var(--pf,1));font-weight:600;line-height:1.25;color:#fff}
+.fact span{display:block;margin-top:3px;font-size:calc(7.8px*var(--pf,1));line-height:1.3;color:var(--mute)}
+
+/* entrada de la portada (una sola vez) */
+@keyframes rise{from{opacity:0;translate:0 14px}to{opacity:1;translate:0 0}}
+@keyframes wipe{from{opacity:0;translate:0 15px;clip-path:inset(100% 0 -30% 0)}to{opacity:1;translate:0 0;clip-path:inset(-30% 0 -30% 0)}}
+.nav{animation:rise .8s var(--expo) .06s both}
+.canvas>.badge{animation:rise .8s var(--expo) .27s both}
+.canvas>.h1.l1{animation:wipe .9s var(--expo) .38s both}
+.canvas>.h1.l2{animation:wipe .9s var(--expo) .47s both}
+.canvas>.sub.s1{animation:rise .8s var(--expo) .69s both}
+.canvas>.sub.s2{animation:rise .8s var(--expo) .745s both}
+.canvas>.cta2{animation:rise .8s var(--expo) .83s both}
+.canvas>.showcase .ring{animation:rise 1s var(--expo) .7s both}
+.canvas>.panel{animation:rise .9s var(--expo) .9s both}
+
+/* ---------- secciones de catálogo ---------- */
+.sec{position:relative;padding-block:clamp(64px,9vw,120px)}
+.sec.glow-a{background:radial-gradient(60% 40% at 15% 0%,rgba(62,200,228,.10),transparent 70%),var(--ink)}
+.sec.glow-b{background:radial-gradient(55% 40% at 90% 0%,rgba(120,110,255,.10),transparent 70%),#05060b}
+.sec.glow-c{background:radial-gradient(55% 40% at 10% 0%,rgba(62,200,228,.09),transparent 70%),var(--ink)}
+.sec.glow-d{background:radial-gradient(60% 45% at 50% 0%,rgba(255,180,84,.13),transparent 70%),#07060a}
+.shead{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(20px,4vw,60px);align-items:end;margin-bottom:clamp(28px,4.5vw,56px)}
+.kick{font-size:11.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+h2{font-weight:900;text-transform:uppercase;font-size:clamp(32px,6.2vw,74px);line-height:.96;letter-spacing:-.012em;text-wrap:balance}
+h2 em{display:block;font-family:var(--font-s);font-style:italic;font-weight:600;text-transform:none;letter-spacing:0;color:var(--cyan-soft);font-size:.82em;margin-top:.08em}
+.lead{font-size:clamp(14.5px,1.5vw,17px);color:var(--mute);max-width:46ch;text-wrap:pretty}
+.lead strong{color:#fff;font-weight:600}
+
+.grid{display:grid;gap:clamp(10px,1.5vw,20px);grid-template-columns:repeat(2,minmax(0,1fr))}
+.item{position:relative;aspect-ratio:3/4;border-radius:18px;overflow:hidden;background:#0d1117;border:1px solid var(--line);isolation:isolate}
+.item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--expo)}
+.item:hover img{transform:scale(1.04)}
+.item .shade{position:absolute;inset:auto 0 0 0;height:42%;background:linear-gradient(180deg,rgba(2,2,4,0),rgba(2,2,4,.80));pointer-events:none}
+.item .btn{position:absolute;left:12px;bottom:12px;z-index:2}
+.feature{grid-column:span 2;grid-row:span 2;aspect-ratio:auto;border-radius:22px}
+.feature img{object-position:center}
+
+.pair{display:grid;gap:clamp(12px,2vw,26px);grid-template-columns:1fr}
+.pair .item{aspect-ratio:4/5;border-radius:24px}
+.pair .item .btn{left:16px;bottom:16px}
+
+.chips{display:flex;flex-wrap:wrap;gap:10px;list-style:none;margin-top:22px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;font-size:13px;font-weight:500;color:#fff;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04)}
+.pill svg{width:15px;height:15px;stroke:var(--amber);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.note{margin-top:clamp(24px,3vw,40px);display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;color:var(--mute);font-size:14px}
+
+/* ---------- contacto ---------- */
+.contact{display:grid;gap:clamp(28px,5vw,72px);grid-template-columns:1fr;align-items:center}
+.logo-big{width:clamp(96px,14vw,148px);height:auto;margin-bottom:26px}
+.info{display:grid;gap:12px;margin-top:26px;list-style:none}
+.info li{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+.info .tile{flex:0 0 auto;width:36px;height:36px}
+.info .tile svg{width:18px;height:18px}
+.info b{display:block;font-weight:600;font-size:15px}
+.info span{display:block;color:var(--mute);font-size:14px;margin-top:2px}
+.info a.maps{display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-size:13.5px;font-weight:600;color:#fff;padding:8px 14px;border-radius:999px;background:#fff;color:#111}
+.info a.maps svg{width:16px;height:16px}
+.info a.maps:hover{filter:brightness(.92)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.cta-row .btn{min-width:176px;gap:10px;display:inline-grid}
+.cta-row .btn span{display:flex;align-items:center;gap:10px}
+.cta-row .btn svg{width:19px;height:19px;fill:#fff}
+.cta-row .btn.ig svg{fill:none;stroke:#fff;stroke-width:1.8}
+.adcard{position:relative;border-radius:26px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/5;max-width:520px;width:100%;justify-self:center;background:#0d1117}
+.adcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.foot{margin-top:clamp(48px,7vw,90px);padding-top:26px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;color:var(--mute);font-size:13px;padding-bottom:calc(24px + 56px)}
+
+.wa{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(24px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;z-index:300;box-shadow:0 8px 20px rgba(0,0,0,.5)}
+.wa svg{width:31px;height:31px;fill:#fff}
+.wa::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid rgba(37,211,102,.5);animation:pulse 2.8s ease-out infinite}
+@keyframes pulse{0%{transform:scale(1);opacity:.75}70%{transform:scale(1.4);opacity:0}100%{opacity:0}}
+
+@media (min-width:561px){
+  .grid.futbol{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid.remeras{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .pair{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (min-width:900px){
+  .grid.futbol{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .contact{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
+}
+@media (min-width:900px){
+  .grid.remeras{grid-template-columns:repeat(5,minmax(0,1fr))}
+}
+@media (max-width:760px){
+  .shead{grid-template-columns:1fr;align-items:start}
+}
+
+/* ---------- menú compacto (hasta 1000px) ---------- */
+@media (max-width:1000px){
+  .nav{padding-left:20px}
+  .burger{display:grid;place-content:center;gap:4px;position:absolute;right:9px;top:8px;width:42px;height:42px;padding:0;border:0;border-radius:14px;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .burger span{display:block;width:19px;height:1.6px;border-radius:2px;background:rgba(255,255,255,.92);transition:transform .28s cubic-bezier(.4,0,.2,1),opacity .18s}
+  .nav.open .burger span:nth-child(1){transform:translateY(5.6px) rotate(45deg)}
+  .nav.open .burger span:nth-child(2){opacity:0}
+  .nav.open .burger span:nth-child(3){transform:translateY(-5.6px) rotate(-45deg)}
+  .navmenu{display:block;position:absolute;left:0;right:0;top:70px;padding:12px;border-radius:22px;border:1px solid rgba(255,255,255,.10);
+    background:linear-gradient(180deg,rgba(11,15,22,.985),rgba(7,10,16,.99));-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);
+    box-shadow:0 26px 60px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.05);opacity:0;visibility:hidden;transform:translateY(-8px);
+    transition:opacity .24s ease,transform .28s cubic-bezier(.4,0,.2,1),visibility .28s}
+  .nav.open .navmenu{opacity:1;visibility:visible;transform:none}
+  .links{flex-direction:column;align-items:stretch;gap:2px;margin:0}
+  .links a{font-size:16px;padding:12px 15px;border-radius:12px;color:rgba(255,255,255,.9);transition:background .2s,color .2s}
+  .nav .btn{width:100%;height:48px;margin-top:10px;font-size:16px}
+}
+@media (hover:hover) and (max-width:1000px){
+  .burger:hover span{background:#fff}
+  .links a:hover{background:rgba(255,255,255,.055);color:#fff;opacity:1}
+}
+
+/* ---------- portada en celular y tablet vertical: columna real, sin lienzo escalado ---------- */
+@media (max-width:900px){
+  .hero{height:auto;padding-top:84px;overflow:hidden}
+  .canvas{position:relative;left:auto;top:auto;width:100%;height:auto;transform:none;display:flex;flex-direction:column;align-items:center;
+    padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .canvas>*{position:static}
+  .canvas>.badge{position:relative;left:auto;top:auto;width:auto;max-width:100%;height:36px;border-radius:18px;margin-top:clamp(10px,2vh,22px);flex:0 0 auto}
+  .badge .tile{width:28px;height:28px;top:3px;left:4px}
+  .badge b{position:relative;left:auto;top:auto;height:34px;padding:0 16px 0 42px;font-size:12.5px}
+  .canvas>.h1{position:relative;left:auto;top:auto;transform:none;white-space:normal;text-align:center;font-size:clamp(26px,7.4vw,58px);line-height:1.04;letter-spacing:-.01em}
+  .canvas>.h1.l1{margin-top:clamp(14px,2.4vh,24px)}
+  .canvas>.sub{position:relative;left:auto;top:auto;transform:none;white-space:normal;text-align:center;font-size:clamp(14px,3.8vw,17px);line-height:1.5;max-width:420px}
+  .canvas>.sub.s1{margin-top:clamp(12px,2vh,18px)}
+  .canvas>.cta2{position:relative;left:auto;top:auto;width:auto;min-width:172px;height:52px;padding:0 26px;margin-top:clamp(18px,3vh,28px);font-size:16px;flex:0 0 auto}
+  .canvas>.showcase{position:relative;left:50%;top:auto;width:100vw;margin-left:-50vw;height:calc(300px*var(--ps,.63) + 38px);overflow:hidden;margin-top:6px}
+  .ring{left:50%;margin-left:-586px;top:-454px;transform-origin:586px 466px;transform:scale(var(--ps,.63))}
+  .canvas>.panel{position:relative;left:auto;top:auto;width:100%;max-width:640px;height:auto;margin-top:-30px;border-radius:24px 24px 0 0;padding:20px 18px 26px}
+  .facts{position:static;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 14px}
+  .fact b{font-size:13px}
+  .fact span{font-size:11.5px}
+  .fact .tile{width:32px;height:32px}
+  .fact .tile svg{width:16px;height:16px}
+}
+@media (max-width:360px){.facts{grid-template-columns:1fr}}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-factory" viewBox="0 0 24 24"><path d="M3 20V9l6 3V9l6 3V5h3v15H3Z"/><path d="M7 20v-3M11 20v-3M15 20v-3"/></symbol>
+    <symbol id="i-visit" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2.5"/><path d="M8 3v4M16 3v4M4 10h16M9 15l2 2 4-4"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h11v10H2zM13 9h4l3 3v4h-7z"/><circle cx="7" cy="17.5" r="1.7"/><circle cx="16.5" cy="17.5" r="1.7"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M18.7 5.3l-1.8 1.8M7.1 16.9l-1.8 1.8"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 32 32"><path d="M16.04 3C9.4 3 4 8.4 4 15.04c0 2.12.55 4.18 1.6 6L4 29l8.14-1.56a12 12 0 0 0 3.9.65h.01C22.68 28.09 28 22.69 28 16.05 28 9.4 22.68 3 16.04 3zm0 22.1h-.01c-1.18 0-2.34-.32-3.35-.92l-.24-.14-4.83.93.96-4.7-.16-.25a9.9 9.9 0 0 1-1.52-5.27c0-5.47 4.45-9.92 9.93-9.92 5.47 0 9.92 4.45 9.92 9.93s-4.45 9.92-9.9 9.92zm5.44-7.43c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#inicio" aria-label="ITA CLOTHES, ir al inicio"><span class="w1">ITA</span><span class="w2">CLOTHES</span></a>
+  <button class="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navmenu"><span></span><span></span><span></span></button>
+  <div class="navmenu" id="navmenu">
+    <nav class="links" aria-label="Secciones">
+      <a href="#futbol">Fútbol</a>
+      <a href="#remeras">Remeras</a>
+      <a href="#jeans">Jeans Mom</a>
+      <a href="#bermudas">Bermudas</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="btn" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inicio" aria-label="ITA CLOTHES">
+  <div class="bg"></div>
+  <div class="stars" id="stA"></div>
+  <div class="stars" id="stB"></div>
+  <div class="canvas" id="canvas">
+    <div class="badge"><span class="tile"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span><b>Itá Ibaté, Corrientes</b></div>
+    <h1 class="h1 l1">El outfit habla</h1>
+    <div class="h1 l2" aria-hidden="true">por vos</div>
+    <p class="sub s1"><b>Remeras, camisetas, jeans mom y bermudas</b></p>
+    <p class="sub s2">Mirá con calma. Si algo te gusta, consultanos.</p>
+    <a class="btn cta2" href="#futbol"><span>Ver colecciones</span></a>
+
+    <div class="showcase"><div class="ring" id="ring" aria-hidden="true"></div></div>
+
+    <div class="panel">
+      <ul class="facts">
+        <li class="fact"><span class="tile"><svg viewBox="0 0 24 24"><use href="#i-factory"/></svg></span><div><b>Productos directos de fábricas</b><span>Del taller a tu outfit</span></div></li>
+        <li class="fact"><span class="tile"><svg viewBox="0 0 24 24"><use href="#i-visit"/></svg></span><div><b>Visita con previo aviso</b><span>Escribinos y coordinamos</span></div></li>
+        <li class="fact"><span class="tile"><svg viewBox="0 0 24 24"><use href="#i-truck"/></svg></span><div><b>Envíos a todo el país</b><span>Llegamos donde estés</span></div></li>
+        <li class="fact"><span class="tile"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg></span><div><b>Atención de 10 a 20 hs</b><span>Itá Ibaté, Corrientes</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec glow-a" id="futbol">
+  <div class="wrap">
+    <div class="shead">
+      <div><p class="kick">Pasión de cancha</p><h2>Camisetas<em>de fútbol</em></h2></div>
+      <p class="lead">Las camisetas de tus equipos favoritos, listas para la tribuna o para el día a día. Mirá todas y <strong>consultá por talles y disponibilidad</strong>.</p>
+    </div>
+    <div class="grid futbol">
+      <article class="item"><img src="img/fut-argentina.jpg" alt="Camiseta de fútbol" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/fut-boca-titular.jpg" alt="Camiseta de fútbol" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/fut-boca-tres.jpg" alt="Camiseta de fútbol" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/fut-river.jpg" alt="Camiseta de fútbol" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/fut-barcelona.jpg" alt="Camiseta de fútbol" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/fut-bayern-roja.jpg" alt="Camiseta de fútbol" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/fut-bayern-blanca.jpg" alt="Camiseta de fútbol" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/fut-manchester.jpg" alt="Camiseta de fútbol" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/fut-arsenal.jpg" alt="Camiseta de fútbol" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/fut-real.jpg" alt="Camiseta de fútbol" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec glow-b" id="remeras">
+  <div class="wrap">
+    <div class="shead">
+      <div><p class="kick">Estilo de calle</p><h2>Remeras<em>oversize y clásicas</em></h2></div>
+      <p class="lead">Del básico de todos los días al estampado que no pasa desapercibido. Cortes anchos, bicolor, raglan y diseños en la espalda.</p>
+    </div>
+    <div class="grid remeras">
+      <article class="item"><img src="img/rem-atreus-blanca.jpg" alt="Remera ITA CLOTHES" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/rem-raglan-beige.jpg" alt="Remera ITA CLOTHES" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/rem-atreus-lineas.jpg" alt="Remera ITA CLOTHES" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/rem-marron.jpg" alt="Remera ITA CLOTHES" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/rem-blanconegro.jpg" alt="Remera ITA CLOTHES" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/rem-costuras.jpg" alt="Remera ITA CLOTHES" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/rem-raglan-trio.jpg" alt="Remera ITA CLOTHES" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/rem-estampa-reality.jpg" alt="Remera ITA CLOTHES" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/rem-estampa-psycho.jpg" alt="Remera ITA CLOTHES" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/rem-observe.jpg" alt="Remera ITA CLOTHES" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/rem-violeta.jpg" alt="Remera ITA CLOTHES" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/rem-goose.jpg" alt="Remera ITA CLOTHES" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/rem-gris-jean.jpg" alt="Remera ITA CLOTHES" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/rem-profit.jpg" alt="Remera ITA CLOTHES" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/looks-collage.jpg" alt="Remera ITA CLOTHES" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec glow-c" id="jeans">
+  <div class="wrap">
+    <div class="shead">
+      <div><p class="kick">Calce de siempre</p><h2>Jeans<em>mom</em></h2></div>
+      <p class="lead">Calce cómodo, tiro alto y lavados que van con todo. Mirá los modelos y consultanos por el talle.</p>
+    </div>
+    <div class="pair">
+      <article class="item"><img src="img/jean-cuatro.jpg" alt="Jean mom" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/jean-negro.jpg" alt="Jean mom" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec glow-d" id="bermudas">
+  <div class="wrap">
+    <div class="shead">
+      <div><p class="kick" style="color:var(--amber)">Se viene el verano</p><h2>Bermudas<em style="color:#ffd9a3">de verano</em></h2></div>
+      <div>
+        <p class="lead">Con el calor que se viene, la bermuda de jean es la que no falla: <strong>fresca, cómoda y con mucha onda</strong>. Son la mejor opción para andar fachero de la mañana a la noche.</p>
+        <ul class="chips">
+          <li class="pill"><svg viewBox="0 0 24 24"><use href="#i-sun"/></svg>Llega el verano</li>
+          <li class="pill"><svg viewBox="0 0 24 24"><use href="#i-sun"/></svg>Frescas y cómodas</li>
+          <li class="pill"><svg viewBox="0 0 24 24"><use href="#i-sun"/></svg>Fachero todo el día</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pair">
+      <article class="item"><img src="img/ber-tres.jpg" alt="Bermuda de jean" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+      <article class="item"><img src="img/ber-celeste.jpg" alt="Bermuda de jean" loading="lazy" decoding="async"><div class="shade"></div><a class="btn sm" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span>Consultar</span></a></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec glow-a" id="contacto">
+  <div class="wrap">
+    <div class="contact">
+      <div>
+        <svg class="logo-big" viewBox="0 0 200 200" role="img" aria-label="ITA CLOTHES">
+          <circle cx="100" cy="100" r="99" fill="#000" stroke="rgba(255,255,255,.18)"/>
+          <text x="22" y="106" font-family="Poppins,sans-serif" font-weight="200" font-size="42" fill="#fff" textLength="50" lengthAdjust="spacingAndGlyphs">ITA</text>
+          <text x="76" y="106" font-family="Poppins,sans-serif" font-weight="300" font-size="31" fill="#fff" textLength="102" lengthAdjust="spacingAndGlyphs">CLOTHES</text>
+          <line x1="76" y1="115" x2="178" y2="115" stroke="#fff" stroke-width="1.6"/>
+        </svg>
+        <p class="kick">Contacto</p>
+        <h2>Hablemos<em>de tu próximo outfit</em></h2>
+        <div class="cta-row">
+          <a class="btn md" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener"><span><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</span></a>
+          <a class="btn md ig" href="https://www.instagram.com/ita_clothess?rpxt=MThjMndlbXp2NHMzcw==" target="_blank" rel="noopener"><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="#fff" stroke="none"/></svg>Instagram</span></a>
+        </div>
+        <ul class="info">
+          <li><span class="tile"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span><div><b>Barrio San Cayetano, Itá Ibaté</b><span>Corrientes, Argentina</span>
+            <a class="maps" href="https://www.google.com/maps/search/?api=1&query=Barrio+San+Cayetano+It%C3%A1+Ibat%C3%A9+Corrientes+Argentina" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#ea4335" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7z"/><path fill="#c5221f" d="M12 2v20s7-7.8 7-13a7 7 0 0 0-7-7z" opacity=".35"/><circle cx="12" cy="9" r="2.6" fill="#fff"/></svg>
+              Ver en Google Maps</a></div></li>
+          <li><span class="tile"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg></span><div><b>Horario: de 10:00 a 20:00 hs</b><span>Visita con previo aviso: escribinos y coordinamos.</span></div></li>
+          <li><span class="tile"><svg viewBox="0 0 24 24"><use href="#i-truck"/></svg></span><div><b>Envíos a todo el país</b><span>Consultá cómo te llega tu pedido.</span></div></li>
+        </ul>
+      </div>
+      <figure class="adcard"><img src="img/anuncio-dron.jpg" alt="Remera negra oversize colgada de un dron en el cielo, con el mensaje: no ignores tu señal" loading="lazy" decoding="async"></figure>
+    </div>
+    <div class="foot"><span>© ITA CLOTHES · El outfit habla por vos.</span><span>Itá Ibaté, Corrientes</span></div>
+  </div>
+</section>
+</main>
+
+<a class="wa" href="https://wa.me/qr/67G3H5PQ5AXYP1" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#i-wa"/></svg></a>
+
+<script>
+(function(){
+  /* ---- estrellas: una lista enorme de box-shadow sobre un div de 1px ---- */
+  function stars(el,n,blur,a0,a1){
+    var s=[];for(var i=0;i<n;i++){
+      s.push((Math.random()*100).toFixed(2)+'vw '+(Math.random()*100).toFixed(2)+'vh '+blur+'px 0 rgba(255,255,255,'+(a0+Math.random()*(a1-a0)).toFixed(2)+')');
+    }
+    el.style.boxShadow=s.join(',');
+  }
+  stars(document.getElementById('stA'),150,0,.05,.30);
+  stars(document.getElementById('stB'),18,1.2,.35,.70);
+
+  /* ---- escala del lienzo de diseño 1172x657: k=min(ancho/1172, alto/560).
+          Se usa 560 (no 657) para llenar el ancho y dejar que el panel baje hasta el borde. ---- */
+  var hero=document.getElementById('inicio'),canvas=document.getElementById('canvas');
+  var mq=matchMedia('(max-width:900px)');
+  function fit(){
+    var vw=hero.clientWidth||innerWidth,vh=innerHeight;
+    if(mq.matches){
+      canvas.style.removeProperty('--k');canvas.style.removeProperty('--fill');canvas.style.removeProperty('--pf');
+      hero.style.height='';
+      canvas.style.setProperty('--ps',Math.max(.5,Math.min(1.05,vw/620)).toFixed(3));
+      return;
+    }
+    var k=Math.min(vw/1172,vh/560);
+    var H=Math.min(vh,760*k);               /* en pantallas muy altas la portada no se estira */
+    hero.style.height=H+'px';
+    canvas.style.setProperty('--k',k.toFixed(4));
+    canvas.style.setProperty('--fill',Math.max(0,H/k-657).toFixed(1)+'px');
+    canvas.style.setProperty('--pf',Math.max(1,1.05/k).toFixed(3)); /* el texto del panel crece cuando k es chico */
+  }
+  addEventListener('resize',fit);
+  if(window.visualViewport)visualViewport.addEventListener('resize',fit);
+  fit();
+
+  /* ---- anillo 3D: R=891, perspectiva 891, 37 tarjetas (paso 360/37), se ocultan las que pasan de 42° ----
+         La cámara está en el centro del anillo, así cada tarjeta mira de frente. */
+  var PICS=[
+    ['fut-argentina','Camiseta de Argentina'],['rem-costuras','Remeras con costuras'],['jean-cuatro','Jeans mom'],
+    ['ber-tres','Bermudas de jean'],['fut-boca-titular','Camiseta de Boca'],['rem-estampa-reality','Remeras estampadas'],
+    ['fut-barcelona','Camiseta del Barcelona'],['rem-raglan-trio','Remeras raglan'],['rem-profit','Remeras de verano'],['fut-river','Camisetas de River']
+  ];
+  var ring=document.getElementById('ring'),N=37,STEP=360/N,R=891,CULL=42,SPEED=1.9,cards=[];
+  for(var i=0;i<N;i++){
+    var p=PICS[i%PICS.length],c=document.createElement('div');c.className='card';
+    var im=new Image();im.alt='';im.decoding='async';im.draggable=false;im.src='img/'+p[0]+'.jpg';
+    im.addEventListener('error',(function(c){return function(){c.classList.add('broken')}})(c));
+    c.appendChild(im);var e=document.createElement('div');e.className='edge';c.appendChild(e);
+    ring.appendChild(c);cards.push(c);
+  }
+  var phase=-2,last=0,vis=true,reduce=matchMedia('(prefers-reduced-motion: reduce)');
+  function place(){
+    for(var i=0;i<N;i++){
+      var a=((i*STEP+phase)%360+540)%360-180,el=cards[i];
+      if(Math.abs(a)>CULL){el.style.visibility='hidden';continue}
+      el.style.visibility='visible';
+      var r=a*Math.PI/180,c=Math.cos(r);
+      el.style.transform='translate3d('+(R*Math.sin(r)).toFixed(2)+'px,0,'+(R*(1-c)).toFixed(2)+'px) rotateY('+(-a).toFixed(3)+'deg)';
+      el.style.filter='brightness('+(0.84+0.5*(1/c-1)).toFixed(3)+')';
+    }
+  }
+  function loop(t){
+    requestAnimationFrame(loop);
+    if(!vis||document.hidden||reduce.matches){last=0;return}
+    if(!last)last=t;
+    var dt=Math.min((t-last)/1000,.1);last=t;
+    phase-=SPEED*dt;place();
+  }
+  place();
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(!vis)last=0},{threshold:0}).observe(hero)}
+  document.addEventListener('visibilitychange',function(){last=0});
+  requestAnimationFrame(loop);
+
+  /* ---- menú compacto ---- */
+  var nav=document.getElementById('nav'),burger=nav.querySelector('.burger'),menu=document.getElementById('navmenu');
+  function setOpen(o){nav.classList.toggle('open',o);burger.setAttribute('aria-expanded',o?'true':'false');burger.setAttribute('aria-label',o?'Cerrar menú':'Abrir menú')}
+  burger.addEventListener('click',function(e){e.stopPropagation();setOpen(!nav.classList.contains('open'))});
+  document.addEventListener('click',function(e){if(nav.classList.contains('open')&&!nav.contains(e.target))setOpen(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){setOpen(false);burger.focus()}});
+  menu.addEventListener('click',function(e){if(e.target.closest('a'))setOpen(false)});
+  matchMedia('(min-width:1001px)').addEventListener('change',function(m){if(m.matches)setOpen(false)});
+})();
+</script>
+</body>
+</html>

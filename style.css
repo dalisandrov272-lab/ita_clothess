@@ -975,7 +975,7 @@ h2 em {
 
 @media (min-width: 561px) {
   .grid.futbol {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .grid.remeras {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1128,6 +1128,7 @@ h2 em {
     align-items: center;
     padding-left: max(16px, env(safe-area-inset-left, 0px));
     padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-bottom: 24px;
   }
   .canvas > * {
     position: static;
@@ -1168,6 +1169,10 @@ h2 em {
     line-height: 1.04;
     letter-spacing: -0.01em;
   }
+  .canvas > .h1.l1,
+  .canvas > .h1.l2 {
+    top: auto;
+  }
   .canvas > .h1.l1 {
     margin-top: clamp(14px, 2.4vh, 24px);
   }
@@ -1181,6 +1186,10 @@ h2 em {
     font-size: clamp(14px, 3.8vw, 17px);
     line-height: 1.5;
     max-width: 420px;
+  }
+  .canvas > .sub.s1,
+  .canvas > .sub.s2 {
+    top: auto;
   }
   .canvas > .sub.s1 {
     margin-top: clamp(12px, 2vh, 18px);
@@ -1198,21 +1207,7 @@ h2 em {
     flex: 0 0 auto;
   }
   .canvas > .showcase {
-    position: relative;
-    left: 50%;
-    top: auto;
-    width: 100vw;
-    margin-left: -50vw;
-    height: calc(300px * var(--ps, 0.63) + 38px);
-    overflow: hidden;
-    margin-top: 6px;
-  }
-  .ring {
-    left: 50%;
-    margin-left: -586px;
-    top: -454px;
-    transform-origin: 586px 466px;
-    transform: scale(var(--ps, 0.63));
+    display: none;
   }
   .canvas > .panel {
     position: relative;
@@ -1221,8 +1216,8 @@ h2 em {
     width: 100%;
     max-width: 640px;
     height: auto;
-    margin-top: -30px;
-    border-radius: 24px 24px 0 0;
+    margin-top: 28px;
+    border-radius: 24px;
     padding: 20px 18px 26px;
   }
   .facts {
